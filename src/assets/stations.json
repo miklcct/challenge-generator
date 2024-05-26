@@ -10706,7 +10706,7 @@
     },
     {
         "name" : "Victoria",
-        "disambiguation" : null,
+        "disambiguation" : "Underground",
         "localAuthority" : "Westminster",
         "lines" : [
             "District",
