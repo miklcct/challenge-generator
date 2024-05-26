@@ -7664,7 +7664,7 @@
     },
     {
         "name" : "Paddington",
-        "disambiguation" : "Underground",
+        "disambiguation" : "Bakerloo, Circle, District",
         "localAuthority" : "Westminster",
         "lines" : [
             "District",
@@ -7683,7 +7683,7 @@
     },
     {
         "name" : "Paddington",
-        "disambiguation" : null,
+        "disambiguation" : "Circle, Hammersmith & City",
         "localAuthority" : "Westminster",
         "lines" : [
             "Hammersmith & City",
