@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {CPAY} from './generator';
+import {CPAY} from 'challenge-generator-backend';
 
 const allZones = [...Array(17).keys()].slice(1);
 

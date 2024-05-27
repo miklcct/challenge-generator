@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {RiverBank} from '@/generator';
+import {RiverBank} from 'challenge-generator-backend';
 
 const model = defineModel<RiverBank[]>();
 </script>

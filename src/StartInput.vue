@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {type Station} from '@/generator';
+import {type Station} from 'challenge-generator-backend';
 
 const model = defineModel<Station>();
 

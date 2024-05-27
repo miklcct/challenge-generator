@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Mode} from '@/generator';
+import {Mode} from 'challenge-generator-backend';
 
 const model = defineModel<Mode[]>();
 </script>

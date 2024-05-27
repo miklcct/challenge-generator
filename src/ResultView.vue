@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 import {useRoute} from 'vue-router';
-import {exclude, fromString, generate, getBasket, Mode, RiverBank} from './generator';
+import {exclude, fromString, generate, getBasket, Mode, RiverBank} from 'challenge-generator-backend';
 
 function toArray<T>(item : undefined | T | T[]) {
   return item === undefined ? undefined : item instanceof Array ? item : [item];

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import ExcludeInput from '@/ExcludeInput.vue';
-import {CPAY, exclude, getBasket, Mode, RiverBank, type Station} from '@/generator';
+import {CPAY, exclude, getBasket, Mode, RiverBank, type Station} from 'challenge-generator-backend';
 import ModeInput from '@/ModeInput.vue';
 import RiverInput from '@/RiverInput.vue';
 import StartInput from '@/StartInput.vue';

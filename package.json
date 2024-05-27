@@ -1,14 +1,19 @@
 {
   "name": "challenge-generator",
-  "description" : "Tube Challenge Generator",
-  "keywords" : ["london", "tube", "underground", "rail"],
+  "description": "Tube Challenge Generator",
+  "keywords": [
+    "london",
+    "tube",
+    "underground",
+    "rail"
+  ],
   "homepage": "https://www.challengegenerator.co.uk/",
   "bugs": "https://github.com/metroapps/challenge-generator/issues",
-  "license" : "AGPL-3.0-or-later",
-  "author" : {
-    "name" : "Michael Tsang",
-    "email" : "michael@metroapps.uk",
-    "url" : "https://metroapps.uk/about"
+  "license": "AGPL-3.0-or-later",
+  "author": {
+    "name": "Michael Tsang",
+    "email": "michael@metroapps.uk",
+    "url": "https://metroapps.uk/about"
   },
   "version": "1.0.0",
   "type": "module",
@@ -21,6 +26,7 @@
   },
   "dependencies": {
     "array-shuffle": "^3.0.0",
+    "challenge-generator-backend": "^1.0.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.2"
   },
