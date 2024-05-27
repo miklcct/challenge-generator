@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import {ref} from 'vue';
 import {CPAY} from './generator';
 
 const allZones = [...Array(17).keys()].slice(1);
 
-const selected = ref([1, 2]);
-defineExpose({selected});
+const model = defineModel<number[]>();
 </script>
 
 <template>
@@ -13,7 +11,7 @@ defineExpose({selected});
     <h2>Select zones</h2>
     <p>
       <label v-for="zone in allZones">
-        <input type="checkbox" v-model="selected" name="zones" :value="zone">
+        <input type="checkbox" v-model="model" name="zones" :value="zone">
         {{ zone === CPAY ? 'Contactless only' : `Zone ${zone}` }}
       </label>
     </p>

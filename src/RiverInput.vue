@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import {RiverBank} from '@/generator';
-import {ref} from 'vue';
 
-const selected = ref(Object.values(RiverBank));
-
-defineExpose({selected});
+const model = defineModel<RiverBank[]>();
 </script>
 
 <template>
@@ -13,7 +10,7 @@ defineExpose({selected});
     <p>Note that Blackfriars (NR) is on both sides of the river.</p>
     <p>
       <label v-for="bank in RiverBank">
-        <input type="checkbox" v-model="selected" name="riverBanks" :value="bank">
+        <input type="checkbox" v-model="model" name="riverBanks" :value="bank">
         {{ bank }} of the Thames
       </label>
     </p>

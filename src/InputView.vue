@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import ExcludeInput from '@/ExcludeInput.vue';
-import {CPAY, exclude, getBasket, type Station} from '@/generator';
+import {CPAY, exclude, getBasket, Mode, RiverBank, type Station} from '@/generator';
 import ModeInput from '@/ModeInput.vue';
 import RiverInput from '@/RiverInput.vue';
 import StartInput from '@/StartInput.vue';
@@ -9,28 +9,26 @@ import ZoneInput from '@/ZoneInput.vue';
 import {computed, ref} from 'vue';
 
 const count = ref(15);
-const modeInput = ref<InstanceType<typeof ModeInput>>();
-const zoneInput = ref<InstanceType<typeof ZoneInput>>();
-const riverInput = ref<InstanceType<typeof RiverInput>>();
-const startInput = ref<InstanceType<typeof StartInput>>();
-const excludeInput = ref<InstanceType<typeof ExcludeInput>>();
+const modes = ref([Mode.LU]);
+const zones = ref([1, 2]);
+const riverBanks = ref(Object.values(RiverBank));
+const startStation = ref<Station>();
+const excludedStations = ref<Station[]>([]);
 
 const allStations = computed(() =>
-    getBasket(zoneInput.value?.selected, modeInput.value?.selected, riverInput.value?.selected)
+    getBasket(zones.value, modes.value, riverBanks.value)
 );
-const excludedStations = computed(() => excludeInput.value?.selected ?? []);
 const basket = computed(() => exclude(allStations.value, excludedStations.value));
-const startStation = computed(() => startInput.value?.selected);
 
 </script>
 
 <template>
   <form action="/results">
-    <ModeInput ref="modeInput"/>
-    <ZoneInput ref="zoneInput"/>
-    <RiverInput ref="riverInput"/>
-    <ExcludeInput ref="excludeInput" :stations="allStations"/>
-    <StartInput ref="startInput" :stations="basket"/>
+    <ModeInput v-model="modes"/>
+    <ZoneInput v-model="zones"/>
+    <RiverInput v-model="riverBanks"/>
+    <ExcludeInput v-model="excludedStations" :stations="allStations"/>
+    <StartInput v-model="startStation" :stations="basket"/>
     <section>
       <h2>Choose number of stations</h2>
       <label>
@@ -38,10 +36,10 @@ const startStation = computed(() => startInput.value?.selected);
         <input name="count" v-model="count" type="number" min="1" :max="basket.length"/>
       </label>
       <p>
-        You are going to choose {{ count }} {{ modeInput?.selected.join(', ') }} stations
+        You are going to choose {{ count }} {{ modes.join(', ') }} stations
         starting at {{ startStation === undefined ? 'any station' : startStation }}
-        in zones {{ zoneInput?.selected.slice().sort((a, b) => a - b).map(zone => zone === CPAY ? 'CPAY' : zone).join(', ') }}
-        on the {{ riverInput?.selected.join(' and ') }} side of the Thames,
+        in zones {{ zones.slice().sort((a, b) => a - b).map(zone => zone === CPAY ? 'CPAY' : zone).join(', ') }}
+        on the {{ riverBanks.join(' and ') }} side of the Thames,
         {{ excludedStations.length === 0 ? 'no stations are excluded.' : `excluding ${excludedStations.join(', ')}.` }}
       </p>
     </section>
