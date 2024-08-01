@@ -38,7 +38,7 @@ const basket = computed(() => exclude(allStations.value, excludedStations.value)
       <p>
         You are going to choose {{ count }} {{ modes.join(', ') }} stations
         starting at {{ startStation === undefined ? 'any station' : startStation }}
-        in zones {{ zones.slice().sort((a, b) => a - b).map(zone => zone === CPAY ? 'CPAY' : zone).join(', ') }}
+        in zones {{ zones.slice().sort((a, b) => a - b).join(', ') }}
         on the {{ riverBanks.join(' and ') }} side of the Thames,
         {{ excludedStations.length === 0 ? 'no stations are excluded.' : `excluding ${excludedStations.join(', ')}.` }}
       </p>

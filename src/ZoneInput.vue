@@ -12,7 +12,7 @@ const model = defineModel<number[]>();
     <p>
       <label v-for="zone in allZones">
         <input type="checkbox" v-model="model" name="zones" :value="zone">
-        {{ zone === CPAY ? 'Contactless only' : `Zone ${zone}` }}
+        {{ zone === CPAY ? `Zone ${zone} (Contactless only)` : `Zone ${zone}` }}
       </label>
     </p>
   </section>

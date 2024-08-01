@@ -1,3 +1,6 @@
+# [1.1.0] - 2024-08-01
+* Add new contactless-only stations
+
 # [1.0.2] - 2024-05-27
 * Extract backend to separate library
 
