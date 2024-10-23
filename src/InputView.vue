@@ -1,7 +1,8 @@
 <script setup lang="ts">
 
 import ExcludeInput from '@/ExcludeInput.vue';
-import {CPAY, exclude, getBasket, Mode, RiverBank, type Station} from 'challenge-generator-backend';
+import LineInput from '@/LineInput.vue';
+import {exclude, getBasket, lines as allLines, Mode, RiverBank, SFA, type Station} from 'challenge-generator-backend';
 import ModeInput from '@/ModeInput.vue';
 import RiverInput from '@/RiverInput.vue';
 import StartInput from '@/StartInput.vue';
@@ -12,11 +13,12 @@ const count = ref(15);
 const modes = ref([Mode.LU]);
 const zones = ref([1, 2]);
 const riverBanks = ref(Object.values(RiverBank));
+const lines = ref(allLines);
 const startStation = ref<Station>();
 const excludedStations = ref<Station[]>([]);
 
 const allStations = computed(() =>
-    getBasket(zones.value, modes.value, riverBanks.value)
+    getBasket(zones.value, modes.value, riverBanks.value, lines.value)
 );
 const basket = computed(() => exclude(allStations.value, excludedStations.value));
 
@@ -27,6 +29,7 @@ const basket = computed(() => exclude(allStations.value, excludedStations.value)
     <ModeInput v-model="modes"/>
     <ZoneInput v-model="zones"/>
     <RiverInput v-model="riverBanks"/>
+    <LineInput v-model="lines"/>
     <ExcludeInput v-model="excludedStations" :stations="allStations"/>
     <StartInput v-model="startStation" :stations="basket"/>
     <section>
@@ -38,8 +41,9 @@ const basket = computed(() => exclude(allStations.value, excludedStations.value)
       <p>
         You are going to choose {{ count }} {{ modes.join(', ') }} stations
         starting at {{ startStation === undefined ? 'any station' : startStation }}
-        in zones {{ zones.slice().sort((a, b) => a - b).join(', ') }}
-        on the {{ riverBanks.join(' and ') }} side of the Thames,
+        in zones {{ zones.slice().sort((a, b) => a - b).map(zone => zone === SFA ? 'SFA' : zone).join(', ') }}
+        on the {{ riverBanks.join(' and ') }} side of the Thames
+        on {{ lines.join(', ') }},
         {{ excludedStations.length === 0 ? 'no stations are excluded.' : `excluding ${excludedStations.join(', ')}.` }}
       </p>
     </section>
