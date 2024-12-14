@@ -1,3 +1,6 @@
+# [1.3.0] - 2024-12-14
+* Update line data
+
 # [1.2.0] - 2024-10-23
 * Allow specifying lines and Stratford International for the basket
 
