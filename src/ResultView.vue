@@ -32,6 +32,7 @@ const results = computed(() => {
         }
         return true;
       }),
+      toArray(route.query.lines)?.filter((string) : string is string => string !== null),
   );
   const excludedStations = toArray(route.query.exclude)?.map(string => {
     const result = string === null ? null : fromString(string);
