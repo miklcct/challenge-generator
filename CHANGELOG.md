@@ -1,3 +1,6 @@
+# [1.4.0] - 2025-02-03
+* Update line data
+
 # [1.3.1] - 2024-12-14
 * Add missing filter for results
 
