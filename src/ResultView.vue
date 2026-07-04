@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 import {useRoute} from 'vue-router';
-import {exclude, fromString, generate, getBasket, Mode, RiverBank} from 'challenge-generator-backend';
+import {exclude, fromString, generate, getBasket, RiverBank} from 'challenge-generator-backend';
 
 function toArray<T>(item : undefined | T | T[]) {
   return item === undefined ? undefined : item instanceof Array ? item : [item];
@@ -20,12 +20,6 @@ const results = computed(() => {
         }
         return result;
       }),
-      toArray(route.query.modes)?.filter((string) : string is Mode => {
-        if (string === null || !Object.values(Mode).includes(string as any)) {
-          throw new RangeError(`${string} is not a valid mode`);
-        }
-        return true;
-      }),
       toArray(route.query.riverBanks)?.filter((string) : string is RiverBank => {
         if (string === null || !Object.values(RiverBank).includes(string as any)) {
           throw new RangeError(`${string} is not a valid side of the river.`);
@@ -33,6 +27,7 @@ const results = computed(() => {
         return true;
       }),
       toArray(route.query.lines)?.filter((string) : string is string => string !== null),
+      toArray(route.query.localAuthorities)?.filter((string) : string is string => string !== null),
   );
   const excludedStations = toArray(route.query.exclude)?.map(string => {
     const result = string === null ? null : fromString(string);

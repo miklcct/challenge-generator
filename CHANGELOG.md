@@ -1,3 +1,6 @@
+# [2.0.0] - 2026-07-04
+* Merge mode and line input and add local authority input
+
 # [1.4.0] - 2025-02-03
 * Update line data
 
